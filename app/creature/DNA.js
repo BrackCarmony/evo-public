@@ -53,8 +53,17 @@ function createMuscles(nodesNum, musclesNum){
   return muscles;
 }
 
+function modifyDNA(dna){
+  var newDna = JSON.parse(JSON.stringify(dna));
+  newDna.nodes[0].val = "Test";
+  console.log(newDna, dna);
+
+
+}
+
 module.exports = {
   createDNA: createDNA,
+  modifyDNA: modifyDNA
 }
 
 

@@ -168,14 +168,16 @@ Creature.prototype.com =function(){
              y:com.y+node.y/N} }, {x:0,y:0});
 }
 
-Creature.prototype.draw = function(svg) {
-
+Creature.prototype.draw = function(svg, center, h, w) {
+  var canvas2 = center || canvas;
+  h = h || 200;
+  w = w || 300;
   if(this.com){
-    var viewBox = this.com.x - 150 + " ";
-     viewBox += this.com.y - 100 + " ";
-     viewBox += 300 + " ";
-     viewBox += 200 + " ";
-    canvas.setAttribute("viewBox", viewBox)
+    var viewBox = this.com.x - w/2 + " ";
+     viewBox += this.com.y - h/2 + " ";
+     viewBox += w + " ";
+     viewBox += h + " ";
+    canvas2.setAttribute("viewBox", viewBox)
   }
 
   this.muscles.forEach(item=>item.draw(svg));
