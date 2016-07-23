@@ -36,7 +36,7 @@ neurons.push({
   inputs:1,
   name:"Sn",
   getVal: function(){
-    this.val = Math.sin(this.inputs[0].val * 180 / Math.PI);
+    this.val = Math.sin(this.inputs[0].val  / Math.PI);
   }
 })
 
@@ -45,7 +45,7 @@ neurons.push({
   inputs:1,
   name:"Cs",
   getVal: function(){
-    this.val = Math.cos(this.inputs[0].val * 180 / Math.PI);
+    this.val = Math.cos(this.inputs[0].val  / Math.PI);
   }
 })
 

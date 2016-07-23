@@ -8,15 +8,20 @@ var currentCreature;
 var creatures = [];
 var testLength = 3000;
 var running;
-for (var i=0;i<10;i++){
+for (var i=0;i<100;i++){
   var creature = {
-    dna:DNA.createDNA(5,7)
+    dna:DNA.createDNA(8,20)
   }
   creature.creature = new Creature.createCreature(creature.dna);
   creatures.push(creature);
 }
 
 function runSimulation(creature){
+
+  var newCreature = {dna:DNA.modifyDNA(creature.dna)}
+  newCreature.creature = new Creature.createCreature(newCreature.dna);
+  determinFitness(newCreature);
+
   if (running){
     clearInterval(running);
   }
@@ -44,16 +49,17 @@ function drawCard(creature){
 }
 
 svg = document.getElementById("creature")
-for (var i=0;i<testLength;i++){
-  creatures.forEach(c =>{
-    c.creature.move();
-  })
-  if (i==100){
-    creatures.forEach(c =>{
-      drawCard(c);
-    })
+function determinFitness(c){
+  for (var i=0;i<testLength;i++){
+      c.creature.move();
+    if (i==100){
+        drawCard(c);
+    }
   }
 }
+
+creatures.forEach(determinFitness);
+
 
 creatures.forEach(c => {
   c.fitness = Math.abs(c.creature.com.x)
